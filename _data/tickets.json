@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Computer blew up",
+        "description": "I dunno what happened. Just blew up",
+        "contactName": "Pete Brown",
+        "contactNumber": "956-789-5544",
+        "client": "6081b2378bbdce0335161300"
+        
+    },
+    {
+        "title": "Server on fire",
+        "description": "It was me, I did it",
+        "status": "Code Red",
+        "contactName": "Joe Blow",
+        "contactNumber": "255-546-8877",
+        "client": "6081b2378bbdce0335161300"
+    },
+    {
+        "title": "Viruses everywhere",
+        "description": "...everywhere",
+        "contactName": "Martin Smartin",
+        "contactNumber": "656-785-3155",
+        "client": "6081b2378bbdce03351612ff"
+    },
+    {
+        "title": "Monitor not working",
+        "description": "Just a black screen",
+        "contactName": "Karly Marley",
+        "contactNumber": "564-887-5588",
+        "client": "6081b2378bbdce03351612fe"
+    },
+    {
+        "title": "Computer isn't powered on",
+        "description": "Do I press the power button?",
+        "contactName": "King Koopa",
+        "contactNumber": "456-589-1111",
+        "client": "6081b2378bbdce03351612fe"
+    },
+    {
+        "title": "Mouse doesn't work",
+        "description": "Tried moving it and it squeaked",
+        "contactName": "Mario Mario",
+        "contactNumber": "456-899-9988",
+        "client": "6081b2378bbdce03351612fe"
+    },
+    {
+        "title": "Firewall is on fire",
+        "description": "I can't put the fire out",
+        "contactName": "Luigi Mario",
+        "contactNumber": "123-569-7888",
+        "client": "6081b2378bbdce03351612fd"
+    },
+    {
+        "title": "Server has become a sentient AI",
+        "description": "It told me what the meaning of life is and now I'm scared",
+        "contactName": "Princess Peach",
+        "contactNumber": "489-985-6655",
+        "client": "6081b2378bbdce03351612fd"
+    },
+    {
+        "title": "Hard drive turned into a soft drive",
+        "description": "You can say is is a bit floppy",
+        "contactName": "Toad Stool",
+        "contactNumber": "123-456-7898",
+        "client": "6081b2378bbdce03351612fc"
+    }
+]

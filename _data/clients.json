@@ -1,0 +1,57 @@
+[
+    {
+        "_id": "6081b2378bbdce0335161300",
+        "name": "Mega Mart",
+        "poc": "Test McTesterson",
+        "pocEmail": "test@taglerock.com",
+        "phone" : "856-895-6987",
+        "address": "123 Fake St",
+        "state": "Texas",
+        "city": "McAllen",
+        "zip": "78504"
+    },
+    {
+        "_id": "6081b2378bbdce03351612ff",
+        "name": "Acme Inc",
+        "poc": "beer boop",
+        "pocEmail": "beep@boop.com",
+        "phone" : "568-896-4568",
+        "address": "321 Fake St",
+        "state": "Iowa",
+        "city": "Winston",
+        "zip": "45689"
+    },
+    {
+        "_id": "6081b2378bbdce03351612fe",
+        "name": "NASCAR",
+        "poc": "Booble Tooble",
+        "pocEmail": "Booble@iamthebest.com",
+        "phone" : "123-456-7898",
+        "address": "123 Dork St",
+        "state": "Florida",
+        "city": "Daytona Beach",
+        "zip": "78965"
+    },
+    {
+        "_id": "6081b2378bbdce03351612fd",
+        "name": "Zion",
+        "poc": "Agent Smith",
+        "pocEmail": "Smith@thematrix.com",
+        "phone" : "456-789-1236",
+        "address": "856 Matrix St.",
+        "state": "Other",
+        "city": "Matrix City",
+        "zip": "69696"
+    },
+    {
+        "_id": "6081b2378bbdce03351612fc",
+        "name": "Wicker Pickers",
+        "poc": "John Wick",
+        "pocEmail": "Dontkillmydog@wicker.com",
+        "phone" : "654-523-9745",
+        "address": "564 Pupper Ave.",
+        "state": "Oregon",
+        "city": "Somewhere",
+        "zip": "96321"
+    }
+]
