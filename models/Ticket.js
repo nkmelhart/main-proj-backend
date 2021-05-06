@@ -29,19 +29,23 @@ const TicketSchema = new mongoose.Schema({
     status: {
         type: String,
         required: [true, 'Status field is required'],
-        enum: [
-            'New',
-            'Open',
-            'Contact Customer',
-            'Scheduled',
-            'Ongoing',
-            'Code Yellow',
-            'Code Red',
-            'Waiting on Parts',
-            'Waiting on Customer',
-            'Waiting on Vendor',
-            'On Hold'
-        ],
+        enum: {
+            values: [
+                'New',
+                'Open',
+                'Contact Customer',
+                'Scheduled',
+                'Ongoing',
+                'Code Yellow',
+                'Code Red',
+                'Waiting on Parts',
+                'Waiting on Customer',
+                'Waiting on Vendor',
+                'On Hold',
+                'Closed'
+            ],
+            message: 'Status is either not selected or invalid'
+        },
         default: 'New'
     },
     assignTo: {
@@ -61,6 +65,15 @@ const TicketSchema = new mongoose.Schema({
         ref: 'Client',
         required: true
     }
+})
+
+
+//This is broken. Need to fix it
+TicketSchema.pre('save', function (next) {
+    if (this.status === "Closed") {
+        this.active = false
+    } 
+    next()
 })
 
 module.exports = mongoose.model('Ticket', TicketSchema)

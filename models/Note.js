@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const NoteSchema = new mongoose.Schema({
     note: {
         type: String,
+        minlength: [5, 'Note must be at least 5 characters long'],
         maxlength: [5000, 'Note cannot be more than 5000 characters'],
         required: [true, 'Please enter a ticket note'],
     },
@@ -15,11 +16,11 @@ const NoteSchema = new mongoose.Schema({
         ref: 'Ticket',
         required: true
     },
-    client: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Client',
-        required: true
-    },
+    // client: {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: 'Client',
+    //     required: true
+    // },
     createdAt: {
         type: Date,
         default: Date.now()

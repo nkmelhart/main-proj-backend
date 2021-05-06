@@ -7,6 +7,7 @@ const {
     createClient,
     updateClient,
     deleteClient,
+    getClientBySearch
     // deleteAllClient
 
 } = require('../controllers/clients')
@@ -30,5 +31,9 @@ router
     .get(getClient)
     .put(updateClient)
     .delete(deleteClient)
+
+router
+    .route('/search/:searchTerm')
+    .get(getClientBySearch)
 
 module.exports = router

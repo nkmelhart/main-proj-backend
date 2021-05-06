@@ -4,7 +4,11 @@ const {
     getAllTickets,
     getTicket,
     updateTicket,
-    createTicket
+    createTicket,
+    getTicketCreateData,
+    getTicketSearchTerm,
+    getTicketSearchUser,
+    getTicketSearchClient,
 } = require('../controllers/tickets')
 const notesRouter = require('./notes')
 const advResults = require('../middleware/advResults')
@@ -16,12 +20,30 @@ router.use('/:ticketId/notes', notesRouter)
 
 router
     .route('/')
-    .get(advResults(Ticket), getAllTickets)
+    .get(advResults(Ticket, {
+        path: 'client',
+        select: 'name poc pocEmail phone'
+    }), getAllTickets)
     .post(createTicket)
 
+router
+    .route('/getCreateData')
+    .get(getTicketCreateData)
+    
 router
     .route('/:id')
     .get(getTicket)
     .put(updateTicket)
 
+router
+    .route('/searchterm/:searchTerm')
+    .get(getTicketSearchTerm)
+
+router
+    .route('/user/:searchUser')
+    .get(getTicketSearchUser)
+
+router
+    .route('/searchclient/:searchClient')
+    .get(getTicketSearchClient)
 module.exports = router

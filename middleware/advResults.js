@@ -1,4 +1,4 @@
-const advResults = (model) => async(req, res, next) => {
+const advResults = (model, populate) => async(req, res, next) => {
     let query;
 
     let reqQuery = { ...req.query }
@@ -18,7 +18,11 @@ const advResults = (model) => async(req, res, next) => {
         query = query.sort(fields)
     }
     else {
-        query.sort('-name')
+        query.sort('name')
+    }
+
+    if (populate) {
+        query = query.populate(populate)
     }
 
     const results = await query

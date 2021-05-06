@@ -15,7 +15,24 @@ exports.getClient = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Client not found with if ${req.params.id}`, 404))
     }
 
+    console.log(client)
+
     res.status(200).json({ success: true, data: client})
+})
+
+exports.getClientBySearch = asyncHandler(async (req, res, next) => {
+    
+    let searchClient = req.params.searchTerm
+    searchClient = searchClient.replace("+", " ")
+    const clients = await Client.find({ name: { $regex: searchClient, $options: 'i'}})
+
+    if(!clients){
+        return next(new ErrorResponse(`Client not found with if ${req.params.id}`, 404))
+    }
+
+    console.log(clients)
+
+    res.status(200).json({ success: true, data: clients})
 })
 
 exports.createClient = asyncHandler(async (req, res, next) => {

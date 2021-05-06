@@ -4,16 +4,41 @@ const asyncHandler = require('../middleware/async')
 const jwt = require('jsonwebtoken')
 
 exports.register = asyncHandler(async (req, res, next) => {
-    const { name, email, role, password } = req.body
+    const { name, email, role, password, phone, notes } = req.body
     
     const user = await User.create({
         name,
         email,
         role,
-        password
+        password,
+        phone,
+        notes
     })
 
     sendTokenResponse(user, 200, res)
+})
+
+exports.updateUser = asyncHandler(async (req, res, next) => {
+    const { name, email, role, phone, notes } = req.body
+
+    console.log(req.body)
+    
+    const user = await User.findByIdAndUpdate(req.params.id, req.body,
+        {
+            new: true,
+            runValidators: true
+        })
+
+    //sendTokenResponse(user, 200, res)
+
+    if(!User){
+        return next(new ErrorResponse(`User not found with id ${req.params.id}`, 404))
+    }
+    res.status(200).json({ success: true, data: user})
+})
+
+exports.getUsers = asyncHandler(async (req, res, next) => {
+    res.status(200).json(res.advResults)
 })
 
 exports.login = asyncHandler(async (req, res, next) => {

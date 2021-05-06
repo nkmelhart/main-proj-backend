@@ -21,13 +21,25 @@ const UserSchema = new mongoose.Schema({
         ]
 
     },
+    phone: {
+        type: String,
+        minlength: [10, 'Phone number must be at least 10 characters'],
+        maxlength: [20, "Phone number must be less than 20 characters"]
+    },
+    notes: {
+        type: String,
+        maxlength: [4000, "Phone number must be less than 4000 characters"]
+    },
     role: {
         type: String,
-        enum: [
-            'user',
+        enum: {
+            values: [
+            'tech',
             'admin'
-        ],
-        default: 'user'
+            ],
+            message: 'Role is either not selected or invalid'
+        },
+        default: 'tech'
     },
     password: {
         type: String,

@@ -13,10 +13,12 @@ const ClientSchema = new mongoose.Schema({
     slug: String,
     poc: {
         type: String,
+        required: [ true, 'Please enter a point of contact'],
         maxlength: [50, 'POC name cannot be more that 50 characters']
     },
     pocEmail: {
         type: String,
+        required: [ true, 'Please enter a point of contact email'],
         match: [
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please enter a valid email'
@@ -26,6 +28,7 @@ const ClientSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
+        required: [ true, 'Please enter a phone number'],
         maxlength: [ 20, 'Phone number cannot be longer than 20 characters']
     },
     address : {
@@ -50,6 +53,14 @@ const ClientSchema = new mongoose.Schema({
         required: [true, 'Please enter a zip code'],
         maxlength: [10, 'Zipcode has a max length of 10 characters']
     },
+    notes: {
+        type: String,
+        maxlength: [4000, 'Notes cannot be longer than 4000 characters']
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     contractNum: {
         type: String,
     },
@@ -60,10 +71,6 @@ const ClientSchema = new mongoose.Schema({
     },
     contractEndDate: Date,
     leasedEQ: Boolean,
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
 
 })
 
@@ -72,4 +79,4 @@ ClientSchema.pre('save', function (next) {
     next()
 })
 
-module.exports = mongoose.model('Clients', ClientSchema)
+module.exports = mongoose.model('Client', ClientSchema)

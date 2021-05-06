@@ -20,11 +20,13 @@ const errorHandler = (err, req, res, next) => {
     if(err.name === 'ValidationError'){
         const message = Object.values(err.errors).map(val => val.message)
         error = new ErrorResponse(message, 400)
+        console.log(err)
     }
 
     res.status(error.statusCode || 500).json({
         success: false,
         error: error.message || 'Server error'
+
     })
 }
 
