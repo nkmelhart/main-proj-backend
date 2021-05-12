@@ -134,7 +134,10 @@ exports.getTicketSearchClient = asyncHandler(async (req, res, next) => {
     const tickets = await Ticket.find({ active: activeBool, client: { $in: clientIdArray } }).populate({
         path: 'client',
         select: 'name poc pocEmail phone'
-    })
+    }).populate({
+            path: 'assignTo',
+            select: 'name email'
+        })
 
     if (!tickets) {
         return next(new ErrorResponse(`No ticket with search term of ${req.params.id}`, 404))
