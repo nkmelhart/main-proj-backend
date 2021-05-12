@@ -49,7 +49,8 @@ const TicketSchema = new mongoose.Schema({
         default: 'New'
     },
     assignTo: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
         default: 'None'
     },
     active: {
@@ -67,12 +68,11 @@ const TicketSchema = new mongoose.Schema({
     }
 })
 
-
-//This is broken. Need to fix it
 TicketSchema.pre('save', function (next) {
-    if (this.status === "Closed") {
+    if (this.status === 'Closed') {
         this.active = false
-    } 
+        console.log('made it here: ', this.active)
+    }
     next()
 })
 

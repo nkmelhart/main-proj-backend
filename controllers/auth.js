@@ -92,3 +92,33 @@ exports.getMe = asyncHandler(async (req, res, next) => {
         data: user
     })
 })
+
+exports.getSearchUserData = asyncHandler(async (req, res, next) => {
+
+    let searchTerm = req.params.searchTerm
+    const user = await User.find({ name: { $regex: searchTerm, $options: 'i' } })
+    
+    if (!user) {
+        return next(new ErrorResponse(`No user with search term of ${searchTerm}`, 404))
+    }
+
+    res.status(200).json({
+        success: true,
+        data: user
+    })
+})
+
+exports.getUser = asyncHandler(async (req, res, next) => {
+    let userId = req.params.id
+
+    const user = await User.findById(userId)
+
+    if (!user) {
+        return next(new ErrorResponse(`No user with ID of ${userId}`, 404))
+    }
+
+    res.status(200).json({
+        success: true,
+        data: user
+    })
+})

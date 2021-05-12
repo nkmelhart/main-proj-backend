@@ -20,10 +20,15 @@ router.use('/:ticketId/notes', notesRouter)
 
 router
     .route('/')
-    .get(advResults(Ticket, {
+    .get(advResults(Ticket, [{
         path: 'client',
         select: 'name poc pocEmail phone'
-    }), getAllTickets)
+    },
+    {
+        path: 'assignTo',
+        select: 'name'
+    }],
+    ), getAllTickets)
     .post(createTicket)
 
 router

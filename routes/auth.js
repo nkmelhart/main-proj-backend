@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { register, login, getUsers, updateUser } = require('../controllers/auth')
+const { register, login, getUsers, updateUser, getSearchUserData, getUser } = require('../controllers/auth')
 const advResults = require('../middleware/advResults')
 const User = require('../models/User')
 
@@ -18,6 +18,11 @@ router
 router
     .route('/users/:id')
     .put(updateUser)
+    .get(getUser)
+
+router
+    .route('/users/search/:searchTerm')
+    .get(getSearchUserData)
 
 
 module.exports = router

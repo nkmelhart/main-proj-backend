@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
     },
     notes: {
         type: String,
-        maxlength: [4000, "Phone number must be less than 4000 characters"]
+        maxlength: [4000, "Note must be less than 4000 characters"]
     },
     role: {
         type: String,

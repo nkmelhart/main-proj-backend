@@ -75,6 +75,7 @@ const ClientSchema = new mongoose.Schema({
 })
 
 ClientSchema.pre('save', function (next) {
+    console.log('in clientschema pre save')
     this.slug = slugify(this.name, { lower: true, remove: /[*+~.()'"!:@]/g})
     next()
 })

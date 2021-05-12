@@ -48,8 +48,13 @@ exports.getAllTickets = asyncHandler(async (req, res, next) => {
 //access    Public
 
 exports.getTicket = asyncHandler(async (req, res, next) => {
-    const ticket = await Ticket.findById(req.params.id)
-
+    const ticket = await Ticket.findById(req.params.id).populate({
+        path: 'client',
+        select: 'name poc pocEmail phone'
+    }).populate({
+        path: 'assignTo',
+        select: 'name email'
+    })
     if (!ticket) {
         return next(new ErrorResponse(`No ticket with id of ${req.params.id}`, 404))
     }
@@ -65,12 +70,15 @@ exports.getTicketSearchTerm = asyncHandler(async (req, res, next) => {
     let searchTerm = req.params.searchTerm
     searchTerm = searchTerm.replace('+', ' ')
     const activeBool = req.query.active.toString()
-    const tickets = await Ticket.find( { active: activeBool, $or: [{ title: { $regex: searchTerm, $options: 'i' } }, { description: { $regex: searchTerm, $options: 'i' } } ] } )
+    const tickets = await Ticket.find({ active: activeBool, $or: [{ title: { $regex: searchTerm, $options: 'i' } }, { description: { $regex: searchTerm, $options: 'i' } }] })
     
-    //     .populate({
-    //     path: 'client',
-    //     select: 'name poc pocEmail phone'
-    // })
+        .populate({
+            path: 'client',
+            select: 'name poc pocEmail phone'
+        }).populate({
+            path: 'assignTo',
+            select: 'name email'
+        })
 
     if (!tickets) {
         return next(new ErrorResponse(`No ticket with search term of ${req.params.id}`, 404))
@@ -89,10 +97,13 @@ exports.getTicketSearchUser = asyncHandler(async (req, res, next) => {
     searchUser = searchUser.replace('+', ' ')
     console.log(searchUser)
     const activeBool = req.query.active.toString()
-    const tickets = await Ticket.find({ active: activeBool, assignTo: { $regex: searchUser, $options: 'i' } }).populate({
+    const tickets = await Ticket.find({ active: activeBool, assignTo: searchUser} ).populate({
         path: 'client',
         select: 'name poc pocEmail phone'
-    })
+    }).populate({
+            path: 'assignTo',
+            select: 'name email'
+        })
 
     if (!tickets) {
         return next(new ErrorResponse(`No ticket with search term of ${req.params.id}`, 404))

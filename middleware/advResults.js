@@ -22,7 +22,10 @@ const advResults = (model, populate) => async(req, res, next) => {
     }
 
     if (populate) {
-        query = query.populate(populate)
+        populate.forEach(pop => {
+            query = query.populate(pop)
+        })
+        
     }
 
     const results = await query
